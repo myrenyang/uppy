@@ -343,8 +343,6 @@ const UploadNewlyAddedFiles = (props) => {
   )
 }
 
-const ThrottledProgressDetails = throttle(ProgressDetails, 500, { leading: true, trailing: true })
-
 const ProgressBarUploading = (props) => {
   if (!props.isUploadStarted || props.isAllComplete) {
     return null
@@ -361,7 +359,7 @@ const ProgressBarUploading = (props) => {
           {props.supportsUploadProgress ? `${title}: ${props.totalProgress}%` : title}
         </div>
         {!props.isAllPaused && !showUploadNewlyAddedFiles && props.showProgressDetails
-          ? (props.supportsUploadProgress ? <ThrottledProgressDetails {...props} /> : <UnknownProgressDetails {...props} />)
+          ? (props.supportsUploadProgress ? <ProgressDetails {...props} /> : <UnknownProgressDetails {...props} />)
           : null}
         {showUploadNewlyAddedFiles ? <UploadNewlyAddedFiles {...props} /> : null}
       </div>
